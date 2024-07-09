@@ -1,33 +1,33 @@
 const http = require('http');
-
+let counterArr = [0, 0, 0];
 const server = http.createServer((req, res) => {
 	console.log('Запрос получен');
-	 let count = 0;
+	
 	if (req.url === '/') {
-		count++;
+		counterArr[0]++;
 		res.writeHead(200, {
 			'Content-Type': 'text/html; charset=UTF-8',
 		})
 		res.end(`<h1> Добро пожаловать на мой сайт!</h1>
-				<a href="localhost:${port}/about">Перейти на About</a>
-				<h2>Страница просмотрена ${count} раз</h2>
+				<a href="http://localhost:${port}/about">Перейти на About</a>
+				<h2>Количество посещений - ${counterArr[0]}</h2>
 			`)
 	} else if (req.url === '/about') {
-		count++;
+		counterArr[1]++;
 		res.writeHead(200, {
 			'Content-Type': 'text/html; charset=UTF-8',
 		})
 		res.end(`<h1>About</h1>
-				<a href="localhost:${port}">Перейти на главную страницу</a>
-				<h2>Страница просмотрена ${count} раз</h2>
+				<a href="http://localhost:${port}">Перейти на главную страницу</a>
+				<h2>Количество посещений - ${counterArr[1]}</h2>
 			`)
 	} else {
-		count++;
+		counterArr[2]++;
 		res.writeHead(404, {
 			'Content-Type': 'text/html; charset=UTF-8',
 		})
 		res.end(`<h1>Страница не найдена!</h1>
-				<h2>Страница просмотрена ${count} раз</h2>
+				<h2>Количество посещений - ${counterArr[2]}</h2>
 			`)
 	}
 })
